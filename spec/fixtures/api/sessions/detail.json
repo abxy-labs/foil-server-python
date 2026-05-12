@@ -177,25 +177,14 @@
       "evaluated_at": "2026-03-24T20:00:05.000Z"
     },
     "runtime_integrity": {
-      "tampering_detected": true,
-      "developer_tools_detected": true,
-      "emulation_suspected": false,
-      "virtualization_suspected": true,
-      "privacy_hardening_suspected": true,
-      "identity_spoofing_suspected": false,
-      "replay_suspected": false,
-      "outdated_environment": false,
-      "verified_bot_identity": false,
-      "levels": {
-        "tampering": "high_risk",
-        "developer_tools": "high_risk",
-        "emulation": "clean",
-        "virtualization": "high_risk",
-        "privacy_hardening": "notice",
-        "identity_spoofing": "clean",
-        "replay": "clean",
-        "outdated_environment": "clean"
-      }
+      "tampering": "high_risk",
+      "developer_tools": "high_risk",
+      "emulation": "clean",
+      "virtualization": "high_risk",
+      "privacy_hardening": "notice",
+      "identity_spoofing": "clean",
+      "replay": "clean",
+      "outdated_environment": "clean"
     },
     "native_runtime_integrity": null,
     "native_app": null,

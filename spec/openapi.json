@@ -357,15 +357,14 @@
                         "evaluated_at": "2026-03-24T20:00:05.000Z"
                       },
                       "runtime_integrity": {
-                        "tampering_detected": true,
-                        "developer_tools_detected": true,
-                        "emulation_suspected": false,
-                        "virtualization_suspected": true,
-                        "privacy_hardening_suspected": true,
-                        "identity_spoofing_suspected": false,
-                        "replay_suspected": false,
-                        "outdated_environment": false,
-                        "verified_bot_identity": false
+                        "tampering": "high_risk",
+                        "developer_tools": "high_risk",
+                        "emulation": "clean",
+                        "virtualization": "high_risk",
+                        "privacy_hardening": "notice",
+                        "identity_spoofing": "clean",
+                        "replay": "clean",
+                        "outdated_environment": "clean"
                       },
                       "native_runtime_integrity": {
                         "platform": "ios",
@@ -11864,15 +11863,14 @@
           "runtime_integrity": {
             "$ref": "#/components/schemas/SessionRuntimeIntegrity",
             "example": {
-              "tampering_detected": true,
-              "developer_tools_detected": true,
-              "emulation_suspected": false,
-              "virtualization_suspected": true,
-              "privacy_hardening_suspected": true,
-              "identity_spoofing_suspected": false,
-              "replay_suspected": false,
-              "outdated_environment": false,
-              "verified_bot_identity": false
+              "tampering": "high_risk",
+              "developer_tools": "high_risk",
+              "emulation": "clean",
+              "virtualization": "high_risk",
+              "privacy_hardening": "notice",
+              "identity_spoofing": "clean",
+              "replay": "clean",
+              "outdated_environment": "clean"
             }
           },
           "native_runtime_integrity": {
@@ -12727,15 +12725,14 @@
             "evaluated_at": "2026-03-24T20:00:05.000Z"
           },
           "runtime_integrity": {
-            "tampering_detected": true,
-            "developer_tools_detected": true,
-            "emulation_suspected": false,
-            "virtualization_suspected": true,
-            "privacy_hardening_suspected": true,
-            "identity_spoofing_suspected": false,
-            "replay_suspected": false,
-            "outdated_environment": false,
-            "verified_bot_identity": false
+            "tampering": "high_risk",
+            "developer_tools": "high_risk",
+            "emulation": "clean",
+            "virtualization": "high_risk",
+            "privacy_hardening": "notice",
+            "identity_spoofing": "clean",
+            "replay": "clean",
+            "outdated_environment": "clean"
           },
           "native_runtime_integrity": {
             "platform": "ios",
@@ -13460,15 +13457,14 @@
                 "evaluated_at": "2026-03-24T20:00:05.000Z"
               },
               "runtime_integrity": {
-                "tampering_detected": true,
-                "developer_tools_detected": true,
-                "emulation_suspected": false,
-                "virtualization_suspected": true,
-                "privacy_hardening_suspected": true,
-                "identity_spoofing_suspected": false,
-                "replay_suspected": false,
-                "outdated_environment": false,
-                "verified_bot_identity": false
+                "tampering": "high_risk",
+                "developer_tools": "high_risk",
+                "emulation": "clean",
+                "virtualization": "high_risk",
+                "privacy_hardening": "notice",
+                "identity_spoofing": "clean",
+                "replay": "clean",
+                "outdated_environment": "clean"
               },
               "native_runtime_integrity": {
                 "platform": "ios",
@@ -13985,15 +13981,14 @@
               "evaluated_at": "2026-03-24T20:00:05.000Z"
             },
             "runtime_integrity": {
-              "tampering_detected": true,
-              "developer_tools_detected": true,
-              "emulation_suspected": false,
-              "virtualization_suspected": true,
-              "privacy_hardening_suspected": true,
-              "identity_spoofing_suspected": false,
-              "replay_suspected": false,
-              "outdated_environment": false,
-              "verified_bot_identity": false
+              "tampering": "high_risk",
+              "developer_tools": "high_risk",
+              "emulation": "clean",
+              "virtualization": "high_risk",
+              "privacy_hardening": "notice",
+              "identity_spoofing": "clean",
+              "replay": "clean",
+              "outdated_environment": "clean"
             },
             "native_runtime_integrity": {
               "platform": "ios",
@@ -18020,181 +18015,106 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "tampering_detected",
-          "developer_tools_detected",
-          "emulation_suspected",
-          "virtualization_suspected",
-          "privacy_hardening_suspected",
-          "identity_spoofing_suspected",
-          "replay_suspected",
-          "outdated_environment",
-          "verified_bot_identity",
-          "levels"
+          "tampering",
+          "developer_tools",
+          "emulation",
+          "virtualization",
+          "privacy_hardening",
+          "identity_spoofing",
+          "replay",
+          "outdated_environment"
         ],
         "properties": {
-          "tampering_detected": {
-            "type": "boolean",
-            "example": true
+          "tampering": {
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
+            ],
+            "example": "high_risk"
           },
-          "developer_tools_detected": {
-            "type": "boolean",
-            "example": true
+          "developer_tools": {
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
+            ],
+            "example": "high_risk"
           },
-          "emulation_suspected": {
-            "type": "boolean",
-            "example": false
+          "emulation": {
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
+            ],
+            "example": "clean"
           },
-          "virtualization_suspected": {
-            "type": "boolean",
-            "example": true
+          "virtualization": {
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
+            ],
+            "example": "high_risk"
           },
-          "privacy_hardening_suspected": {
-            "type": "boolean",
-            "example": true
+          "privacy_hardening": {
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
+            ],
+            "example": "notice"
           },
-          "identity_spoofing_suspected": {
-            "type": "boolean",
-            "example": false
+          "identity_spoofing": {
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
+            ],
+            "example": "clean"
           },
-          "replay_suspected": {
-            "type": "boolean",
-            "example": false
+          "replay": {
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
+            ],
+            "example": "clean"
           },
           "outdated_environment": {
-            "type": "boolean",
-            "example": false
-          },
-          "verified_bot_identity": {
-            "type": "boolean",
-            "example": false
-          },
-          "levels": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "tampering",
-              "developer_tools",
-              "emulation",
-              "virtualization",
-              "privacy_hardening",
-              "identity_spoofing",
-              "replay",
-              "outdated_environment"
+            "type": "string",
+            "enum": [
+              "clean",
+              "notice",
+              "elevated",
+              "high_risk"
             ],
-            "properties": {
-              "tampering": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "high_risk"
-              },
-              "developer_tools": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "high_risk"
-              },
-              "emulation": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "clean"
-              },
-              "virtualization": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "high_risk"
-              },
-              "privacy_hardening": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "notice"
-              },
-              "identity_spoofing": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "clean"
-              },
-              "replay": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "clean"
-              },
-              "outdated_environment": {
-                "type": "string",
-                "enum": [
-                  "clean",
-                  "notice",
-                  "elevated",
-                  "high_risk"
-                ],
-                "example": "clean"
-              }
-            },
-            "example": {
-              "tampering": "high_risk",
-              "developer_tools": "high_risk",
-              "emulation": "clean",
-              "virtualization": "high_risk",
-              "privacy_hardening": "notice",
-              "identity_spoofing": "clean",
-              "replay": "clean",
-              "outdated_environment": "clean"
-            }
+            "example": "clean"
           }
         },
         "example": {
-          "tampering_detected": true,
-          "developer_tools_detected": true,
-          "emulation_suspected": false,
-          "virtualization_suspected": true,
-          "privacy_hardening_suspected": true,
-          "identity_spoofing_suspected": false,
-          "replay_suspected": false,
-          "outdated_environment": false,
-          "verified_bot_identity": false,
-          "levels": {
-            "tampering": "high_risk",
-            "developer_tools": "high_risk",
-            "emulation": "clean",
-            "virtualization": "high_risk",
-            "privacy_hardening": "notice",
-            "identity_spoofing": "clean",
-            "replay": "clean",
-            "outdated_environment": "clean"
-          }
+          "tampering": "high_risk",
+          "developer_tools": "high_risk",
+          "emulation": "clean",
+          "virtualization": "high_risk",
+          "privacy_hardening": "notice",
+          "identity_spoofing": "clean",
+          "replay": "clean",
+          "outdated_environment": "clean"
         }
       },
       "SessionSignalFired": {
