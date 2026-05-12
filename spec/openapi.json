@@ -18028,7 +18028,8 @@
           "identity_spoofing_suspected",
           "replay_suspected",
           "outdated_environment",
-          "verified_bot_identity"
+          "verified_bot_identity",
+          "levels"
         ],
         "properties": {
           "tampering_detected": {
@@ -18066,6 +18067,112 @@
           "verified_bot_identity": {
             "type": "boolean",
             "example": false
+          },
+          "levels": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "tampering",
+              "developer_tools",
+              "emulation",
+              "virtualization",
+              "privacy_hardening",
+              "identity_spoofing",
+              "replay",
+              "outdated_environment"
+            ],
+            "properties": {
+              "tampering": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "high_risk"
+              },
+              "developer_tools": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "high_risk"
+              },
+              "emulation": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "clean"
+              },
+              "virtualization": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "high_risk"
+              },
+              "privacy_hardening": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "notice"
+              },
+              "identity_spoofing": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "clean"
+              },
+              "replay": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "clean"
+              },
+              "outdated_environment": {
+                "type": "string",
+                "enum": [
+                  "clean",
+                  "notice",
+                  "elevated",
+                  "high_risk"
+                ],
+                "example": "clean"
+              }
+            },
+            "example": {
+              "tampering": "high_risk",
+              "developer_tools": "high_risk",
+              "emulation": "clean",
+              "virtualization": "high_risk",
+              "privacy_hardening": "notice",
+              "identity_spoofing": "clean",
+              "replay": "clean",
+              "outdated_environment": "clean"
+            }
           }
         },
         "example": {
@@ -18077,7 +18184,17 @@
           "identity_spoofing_suspected": false,
           "replay_suspected": false,
           "outdated_environment": false,
-          "verified_bot_identity": false
+          "verified_bot_identity": false,
+          "levels": {
+            "tampering": "high_risk",
+            "developer_tools": "high_risk",
+            "emulation": "clean",
+            "virtualization": "high_risk",
+            "privacy_hardening": "notice",
+            "identity_spoofing": "clean",
+            "replay": "clean",
+            "outdated_environment": "clean"
+          }
         }
       },
       "SessionSignalFired": {

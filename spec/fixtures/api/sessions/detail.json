@@ -185,7 +185,17 @@
       "identity_spoofing_suspected": false,
       "replay_suspected": false,
       "outdated_environment": false,
-      "verified_bot_identity": false
+      "verified_bot_identity": false,
+      "levels": {
+        "tampering": "high_risk",
+        "developer_tools": "high_risk",
+        "emulation": "clean",
+        "virtualization": "high_risk",
+        "privacy_hardening": "notice",
+        "identity_spoofing": "clean",
+        "replay": "clean",
+        "outdated_environment": "clean"
+      }
     },
     "native_runtime_integrity": null,
     "native_app": null,
