@@ -77,7 +77,7 @@ Every server SDK should expose these top-level capabilities:
 Every SDK should default to:
 
 - `base_url = https://api.tripwirejs.com`
-- `secret_key = env(TRIPWIRE_SECRET_KEY)`
+- `secret_key = env(FOIL_SECRET_KEY)`
 - support for public, bearer-token, and secret-key auth as required by the Gate surface
 - request timeout support
 - no automatic retries

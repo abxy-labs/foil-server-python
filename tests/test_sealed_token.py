@@ -27,10 +27,10 @@ class SealedTokenTests(unittest.TestCase):
 
     def test_missing_secret_raises_configuration_error(self) -> None:
         fixture = load_fixture("sealed-token/vector.v1.json")
-        original = os.environ.pop("TRIPWIRE_SECRET_KEY", None)
+        original = os.environ.pop("FOIL_SECRET_KEY", None)
         try:
             with self.assertRaises(TripwireConfigurationError):
                 verify_tripwire_token(fixture["token"])
         finally:
             if original is not None:
-                os.environ["TRIPWIRE_SECRET_KEY"] = original
+                os.environ["FOIL_SECRET_KEY"] = original

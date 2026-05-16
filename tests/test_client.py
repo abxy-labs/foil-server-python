@@ -24,8 +24,8 @@ def json_response(
 
 class ClientTests(unittest.TestCase):
     def test_env_secret_fallback(self) -> None:
-        original = os.environ.get("TRIPWIRE_SECRET_KEY")
-        os.environ["TRIPWIRE_SECRET_KEY"] = "sk_env_default"
+        original = os.environ.get("FOIL_SECRET_KEY")
+        os.environ["FOIL_SECRET_KEY"] = "sk_env_default"
         fixture = load_fixture("api/sessions/list.json")
 
         transport = httpx.MockTransport(lambda _request: json_response(fixture))
@@ -36,22 +36,22 @@ class ClientTests(unittest.TestCase):
         finally:
             client.close()
             if original is None:
-                os.environ.pop("TRIPWIRE_SECRET_KEY", None)
+                os.environ.pop("FOIL_SECRET_KEY", None)
             else:
-                os.environ["TRIPWIRE_SECRET_KEY"] = original
+                os.environ["FOIL_SECRET_KEY"] = original
 
     def test_missing_secret_raises(self) -> None:
-        original = os.environ.pop("TRIPWIRE_SECRET_KEY", None)
+        original = os.environ.pop("FOIL_SECRET_KEY", None)
         try:
             client = Tripwire()
             self.assertIsNotNone(client.gate)
             client.close()
         finally:
             if original is not None:
-                os.environ["TRIPWIRE_SECRET_KEY"] = original
+                os.environ["FOIL_SECRET_KEY"] = original
 
     def test_secret_endpoints_raise_at_request_time_when_no_secret_is_configured(self) -> None:
-        original = os.environ.pop("TRIPWIRE_SECRET_KEY", None)
+        original = os.environ.pop("FOIL_SECRET_KEY", None)
         try:
             client = Tripwire(transport=httpx.MockTransport(lambda _request: json_response({})))
             with self.assertRaises(TripwireConfigurationError):
@@ -59,7 +59,7 @@ class ClientTests(unittest.TestCase):
             client.close()
         finally:
             if original is not None:
-                os.environ["TRIPWIRE_SECRET_KEY"] = original
+                os.environ["FOIL_SECRET_KEY"] = original
 
     def test_base_url_timeout_and_headers_are_applied(self) -> None:
         fixture = load_fixture("api/sessions/list.json")

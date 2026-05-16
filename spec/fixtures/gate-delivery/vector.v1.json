@@ -10,8 +10,8 @@
   "payload": {
     "version": 1,
     "outputs": {
-      "TRIPWIRE_PUBLISHABLE_KEY": "pk_test_vector",
-      "TRIPWIRE_SECRET_KEY": "sk_test_vector"
+      "FOIL_PUBLISHABLE_KEY": "pk_test_vector",
+      "FOIL_SECRET_KEY": "sk_test_vector"
     },
     "ack_token": "ack_test_vector"
   },
@@ -19,10 +19,10 @@
     "version": 1,
     "algorithm": "x25519-hkdf-sha256/aes-256-gcm",
     "key_id": "LyGqfpvB0SCaX4P0inVpMJTAjCNJVWq_3OE87it2ZYo",
-    "ephemeral_public_key": "Q_5aebzWx6eFzTwWQfb0w_mLOmlelA2saRy4XdzCjEM",
-    "salt": "Zaieku8TjeKB-jfdRjlOfBufwGP5BsGY6PYIA1PwcQk",
-    "iv": "gf_vsGj9KXTwRobP",
-    "ciphertext": "pCDCqi28gW0GpyXNHhhX0koP_vyst774zO2n7WnLF2v36zYTTEonlEzqM3gOYpX3Vff1rsrBtQ_BS7KPmqvxh1ku93tWebjOUXcEu2ExvJxTakv5JtiS-uxcPDgUbNoy-9r-hFYCJsWZx9Bw2E8ohgUeVsGWWVvZXljfODbHRXlqa0it_pbm5ts6",
-    "tag": "fhlTs3NfvLN1rTo8-bpyNQ"
+    "ephemeral_public_key": "htTYNbW6SbgcDqgtvmv6EA9GS2DdUUW9aw-t7SljmUE",
+    "salt": "PoBWqXn4wOCM-1TaCHaidKamsXTEaFBa-wHS17Wi5MI",
+    "iv": "F2pCmjpItfGp0beW",
+    "ciphertext": "A1dIsh68ORtzf4lIdn6hYA_nE_jVp2hcNNAGk58PLYiORhFW8cJqa327AfymPsLQtE_md_vcwc-Fz92F0eaT74W1ch5sLTqY_qOX07PGd5dcyXhDEL1ILU2sltHNEb71nsjGYvg2uoyMbUGW9ZI1blPrJfHmP6gdoO7xr4_b5keq3Q",
+    "tag": "NykzAw0gCWP02uK52D0eWQ"
   }
 }

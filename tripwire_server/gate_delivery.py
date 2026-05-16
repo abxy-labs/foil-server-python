@@ -69,12 +69,14 @@ WEBHOOK_EVENT_TYPES = {
 def derive_gate_agent_token_env_key(service_id: str) -> str:
     normalized = "_".join(filter(None, "".join(ch if ch.isalnum() else "_" for ch in service_id.strip()).split("_"))).upper()
     if not normalized:
-      raise ValueError("service_id is required to derive a Gate agent token env key")
+        raise ValueError("service_id is required to derive a Gate agent token env key")
+    if normalized in {"TRIPWIRE", "FOIL"}:
+        return f"FOIL{GATE_AGENT_TOKEN_ENV_SUFFIX}"
     return f"{normalized}{GATE_AGENT_TOKEN_ENV_SUFFIX}"
 
 
 def is_gate_managed_env_var_key(key: str) -> bool:
-    return key == "TRIPWIRE_AGENT_TOKEN" or key.endswith(GATE_AGENT_TOKEN_ENV_SUFFIX)
+    return key == "FOIL_AGENT_TOKEN" or key.endswith(GATE_AGENT_TOKEN_ENV_SUFFIX)
 
 
 def is_blocked_gate_env_var_key(key: str) -> bool:

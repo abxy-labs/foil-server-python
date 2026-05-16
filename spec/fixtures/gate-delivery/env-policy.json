@@ -2,7 +2,7 @@
   "derive_agent_token_env_key": [
     {
       "service_id": "tripwire",
-      "expected": "TRIPWIRE_GATE_AGENT_TOKEN"
+      "expected": "FOIL_GATE_AGENT_TOKEN"
     },
     {
       "service_id": "acme-prod",
@@ -11,7 +11,7 @@
   ],
   "is_gate_managed_env_var_key": [
     {
-      "key": "TRIPWIRE_AGENT_TOKEN",
+      "key": "FOIL_AGENT_TOKEN",
       "managed": true
     },
     {
@@ -33,7 +33,7 @@
       "blocked": true
     },
     {
-      "key": "TRIPWIRE_SECRET_KEY",
+      "key": "FOIL_SECRET_KEY",
       "blocked": false
     }
   ]

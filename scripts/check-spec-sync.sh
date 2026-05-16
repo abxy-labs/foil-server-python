@@ -4,17 +4,17 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SPEC_DIR="${ROOT_DIR}/spec"
 SPEC_REPO="abxy-labs/foil-server-sdk-spec"
-SPEC_REF="${TRIPWIRE_SDK_SPEC_REF:-${GITHUB_HEAD_REF:-${GITHUB_REF_NAME:-main}}}"
+SPEC_REF="${FOIL_SDK_SPEC_REF:-${GITHUB_HEAD_REF:-${GITHUB_REF_NAME:-main}}}"
 
 if [[ ! -d "${SPEC_DIR}" ]]; then
   echo "Local spec/ directory is missing."
   exit 1
 fi
 
-if [[ -n "${TRIPWIRE_SDK_SPEC_DIR:-}" ]]; then
-  SOURCE_DIR="${TRIPWIRE_SDK_SPEC_DIR%/}"
+if [[ -n "${FOIL_SDK_SPEC_DIR:-}" ]]; then
+  SOURCE_DIR="${FOIL_SDK_SPEC_DIR%/}"
   if [[ ! -d "${SOURCE_DIR}" ]]; then
-    echo "TRIPWIRE_SDK_SPEC_DIR does not exist: ${SOURCE_DIR}"
+    echo "FOIL_SDK_SPEC_DIR does not exist: ${SOURCE_DIR}"
     exit 1
   fi
 
@@ -23,10 +23,10 @@ if [[ -n "${TRIPWIRE_SDK_SPEC_DIR:-}" ]]; then
   exit 0
 fi
 
-if [[ -n "${TRIPWIRE_MAIN_REPO_DIR:-}" ]]; then
-  SOURCE_DIR="${TRIPWIRE_MAIN_REPO_DIR%/}/sdk-spec/server"
+if [[ -n "${FOIL_MAIN_REPO_DIR:-}" ]]; then
+  SOURCE_DIR="${FOIL_MAIN_REPO_DIR%/}/sdk-spec/server"
   if [[ ! -d "${SOURCE_DIR}" ]]; then
-    echo "TRIPWIRE_MAIN_REPO_DIR does not contain sdk-spec/server: ${SOURCE_DIR}"
+    echo "FOIL_MAIN_REPO_DIR does not contain sdk-spec/server: ${SOURCE_DIR}"
     exit 1
   fi
 

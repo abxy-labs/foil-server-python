@@ -39,14 +39,14 @@ def find_api_key(client: Tripwire, organization_id: str, key_id: str):
         cursor = page.next_cursor
 
 
-@unittest.skipUnless(os.getenv("TRIPWIRE_LIVE_SMOKE") == "1", "Set TRIPWIRE_LIVE_SMOKE=1 to run live smoke tests.")
+@unittest.skipUnless(os.getenv("FOIL_LIVE_SMOKE") == "1", "Set FOIL_LIVE_SMOKE=1 to run live smoke tests.")
 class LiveSmokeTests(unittest.TestCase):
     def test_public_server_surface(self) -> None:
         client = Tripwire(
-            secret_key=require_env("TRIPWIRE_SMOKE_SECRET_KEY"),
-            base_url=os.getenv("TRIPWIRE_SMOKE_BASE_URL", "https://api.tripwirejs.com"),
+            secret_key=require_env("FOIL_SMOKE_SECRET_KEY"),
+            base_url=os.getenv("FOIL_SMOKE_BASE_URL", "https://api.tripwirejs.com"),
         )
-        organization_id = require_env("TRIPWIRE_SMOKE_ORGANIZATION_ID")
+        organization_id = require_env("FOIL_SMOKE_ORGANIZATION_ID")
 
         created_key_id: str | None = None
         rotated_key_id: str | None = None

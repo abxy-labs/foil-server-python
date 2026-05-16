@@ -16,10 +16,10 @@ VERSION = 0x01
 
 
 def _resolve_secret(secret_key: str | None) -> str:
-    resolved = secret_key or os.getenv("TRIPWIRE_SECRET_KEY")
+    resolved = secret_key or os.getenv("FOIL_SECRET_KEY")
     if not resolved:
         raise TripwireConfigurationError(
-            "Missing Tripwire secret key. Pass secret_key explicitly or set TRIPWIRE_SECRET_KEY."
+            "Missing Tripwire secret key. Pass secret_key explicitly or set FOIL_SECRET_KEY."
         )
     return resolved
 

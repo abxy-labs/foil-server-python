@@ -10,12 +10,12 @@
     "env_vars": [
       {
         "name": "Publishable key",
-        "key": "TRIPWIRE_PUBLISHABLE_KEY",
+        "key": "FOIL_PUBLISHABLE_KEY",
         "secret": false
       },
       {
         "name": "Secret key",
-        "key": "TRIPWIRE_SECRET_KEY",
+        "key": "FOIL_SECRET_KEY",
         "secret": true
       }
     ],

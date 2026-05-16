@@ -944,7 +944,7 @@ class Tripwire:
         user_agent: str | None = None,
         transport: httpx.BaseTransport | None = None,
     ) -> None:
-        resolved_secret = secret_key or os.getenv("TRIPWIRE_SECRET_KEY")
+        resolved_secret = secret_key or os.getenv("FOIL_SECRET_KEY")
         headers = {
             "Accept": "application/json",
             "X-Tripwire-Client": SDK_CLIENT_HEADER,
@@ -993,7 +993,7 @@ class Tripwire:
         elif auth_mode == "secret":
             if not self._secret_key:
                 raise TripwireConfigurationError(
-                    "Missing Tripwire secret key. Pass secret_key explicitly or set TRIPWIRE_SECRET_KEY."
+                    "Missing Tripwire secret key. Pass secret_key explicitly or set FOIL_SECRET_KEY."
                 )
             headers["Authorization"] = f"Bearer {self._secret_key}"
         response = self._client.request(method, path, params=query, json=body, headers=headers)

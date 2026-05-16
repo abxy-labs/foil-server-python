@@ -36,19 +36,19 @@ jobs:
     needs: [test, spec-sync]
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
     env:
-      TRIPWIRE_LIVE_SMOKE: "1"
-      TRIPWIRE_SMOKE_SECRET_KEY: ${{ secrets.TRIPWIRE_SMOKE_SECRET_KEY }}
-      TRIPWIRE_SMOKE_TEAM_ID: ${{ secrets.TRIPWIRE_SMOKE_TEAM_ID }}
-      TRIPWIRE_SMOKE_BASE_URL: ${{ secrets.TRIPWIRE_SMOKE_BASE_URL }}
+      FOIL_LIVE_SMOKE: "1"
+      FOIL_SMOKE_SECRET_KEY: ${{ secrets.FOIL_SMOKE_SECRET_KEY }}
+      FOIL_SMOKE_ORGANIZATION_ID: ${{ secrets.FOIL_SMOKE_ORGANIZATION_ID }}
+      FOIL_SMOKE_BASE_URL: ${{ secrets.FOIL_SMOKE_BASE_URL }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Require smoke secrets
-        if: ${{ env.TRIPWIRE_SMOKE_SECRET_KEY == '' || env.TRIPWIRE_SMOKE_TEAM_ID == '' }}
+        if: ${{ env.FOIL_SMOKE_SECRET_KEY == '' || env.FOIL_SMOKE_ORGANIZATION_ID == '' }}
         run: |
-          echo "TRIPWIRE_SMOKE_SECRET_KEY and TRIPWIRE_SMOKE_TEAM_ID are required for live smoke tests."
+          echo "FOIL_SMOKE_SECRET_KEY and FOIL_SMOKE_ORGANIZATION_ID are required for live smoke tests."
           exit 1
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e .
