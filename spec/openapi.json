@@ -1,13 +1,13 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Tripwire Server SDK API",
+    "title": "Foil Server SDK API",
     "version": "2026-03-25",
-    "description": "Customer-facing server-side Tripwire APIs for the public SDK surface."
+    "description": "Customer-facing server-side Foil APIs for the public SDK surface."
   },
   "servers": [
     {
-      "url": "https://api.tripwirejs.com",
+      "url": "https://api.usefoil.com",
       "description": "Production"
     }
   ],
@@ -429,7 +429,7 @@
                           "ro_hardware": "ro_hardware",
                           "ro_product_model": "chrome",
                           "simulator_env_keys": [
-                            "TRIPWIRE_SAMPLE_KEY"
+                            "FOIL_SAMPLE_KEY"
                           ]
                         },
                         "hardware_claims_mismatch": {
@@ -1940,9 +1940,9 @@
                           "*"
                         ],
                         "rate_limit": 1,
-                        "key_preview": "TRIPWIRE_SAMPLE_KEY",
-                        "display_key": "TRIPWIRE_SAMPLE_KEY",
-                        "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+                        "key_preview": "FOIL_SAMPLE_KEY",
+                        "display_key": "FOIL_SAMPLE_KEY",
+                        "revealed_key": "FOIL_SAMPLE_KEY",
                         "last_used_at": "2026-03-24T20:00:05.000Z",
                         "created_at": "2026-03-24T20:00:00.000Z",
                         "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -2168,9 +2168,9 @@
                         "*"
                       ],
                       "rate_limit": 1,
-                      "key_preview": "TRIPWIRE_SAMPLE_KEY",
-                      "display_key": "TRIPWIRE_SAMPLE_KEY",
-                      "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+                      "key_preview": "FOIL_SAMPLE_KEY",
+                      "display_key": "FOIL_SAMPLE_KEY",
+                      "revealed_key": "FOIL_SAMPLE_KEY",
                       "last_used_at": "2026-03-24T20:00:05.000Z",
                       "created_at": "2026-03-24T20:00:00.000Z",
                       "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -2382,9 +2382,9 @@
                         "*"
                       ],
                       "rate_limit": 1,
-                      "key_preview": "TRIPWIRE_SAMPLE_KEY",
-                      "display_key": "TRIPWIRE_SAMPLE_KEY",
-                      "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+                      "key_preview": "FOIL_SAMPLE_KEY",
+                      "display_key": "FOIL_SAMPLE_KEY",
+                      "revealed_key": "FOIL_SAMPLE_KEY",
                       "last_used_at": "2026-03-24T20:00:05.000Z",
                       "created_at": "2026-03-24T20:00:00.000Z",
                       "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -2578,9 +2578,9 @@
                         "*"
                       ],
                       "rate_limit": 1,
-                      "key_preview": "TRIPWIRE_SAMPLE_KEY",
-                      "display_key": "TRIPWIRE_SAMPLE_KEY",
-                      "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+                      "key_preview": "FOIL_SAMPLE_KEY",
+                      "display_key": "FOIL_SAMPLE_KEY",
+                      "revealed_key": "FOIL_SAMPLE_KEY",
                       "last_used_at": "2026-03-24T20:00:05.000Z",
                       "created_at": "2026-03-24T20:00:00.000Z",
                       "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -2791,9 +2791,9 @@
                         "*"
                       ],
                       "rate_limit": 1,
-                      "key_preview": "TRIPWIRE_SAMPLE_KEY",
-                      "display_key": "TRIPWIRE_SAMPLE_KEY",
-                      "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+                      "key_preview": "FOIL_SAMPLE_KEY",
+                      "display_key": "FOIL_SAMPLE_KEY",
+                      "revealed_key": "FOIL_SAMPLE_KEY",
                       "last_used_at": "2026-03-24T20:00:05.000Z",
                       "created_at": "2026-03-24T20:00:00.000Z",
                       "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -4419,7 +4419,7 @@
                         "env_vars": [
                           {
                             "name": "Acme Growth Workspace",
-                            "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                            "key": "FOIL_PUBLISHABLE_KEY",
                             "secret": true
                           }
                         ],
@@ -4435,7 +4435,7 @@
                           "logo_url": "https://app.acme.co/signup",
                           "primary_color": "#111827",
                           "secondary_color": "#60a5fa",
-                          "ascii_art": "TRIPWIRE",
+                          "ascii_art": "FOIL",
                           "verified": true
                         },
                         "consent": {
@@ -4492,7 +4492,7 @@
                       "env_vars": [
                         {
                           "name": "Acme Growth Workspace",
-                          "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                          "key": "FOIL_PUBLISHABLE_KEY",
                           "secret": true
                         }
                       ],
@@ -4508,7 +4508,7 @@
                         "logo_url": "https://app.acme.co/signup",
                         "primary_color": "#111827",
                         "secondary_color": "#60a5fa",
-                        "ascii_art": "TRIPWIRE",
+                        "ascii_art": "FOIL",
                         "verified": true
                       },
                       "consent": {
@@ -4599,7 +4599,7 @@
                         "env_vars": [
                           {
                             "name": "Acme Growth Workspace",
-                            "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                            "key": "FOIL_PUBLISHABLE_KEY",
                             "secret": true
                           }
                         ],
@@ -4615,7 +4615,7 @@
                           "logo_url": "https://app.acme.co/signup",
                           "primary_color": "#111827",
                           "secondary_color": "#60a5fa",
-                          "ascii_art": "TRIPWIRE",
+                          "ascii_art": "FOIL",
                           "verified": true
                         },
                         "consent": {
@@ -4737,7 +4737,7 @@
                   "env_vars": [
                     {
                       "name": "Acme Growth Workspace",
-                      "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                      "key": "FOIL_PUBLISHABLE_KEY",
                       "secret": true
                     }
                   ],
@@ -4753,7 +4753,7 @@
                     "logo_url": "https://app.acme.co/signup",
                     "primary_color": "#111827",
                     "secondary_color": "#60a5fa",
-                    "ascii_art": "TRIPWIRE",
+                    "ascii_art": "FOIL",
                     "verified": true
                   },
                   "consent": {
@@ -4786,7 +4786,7 @@
                       "env_vars": [
                         {
                           "name": "Acme Growth Workspace",
-                          "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                          "key": "FOIL_PUBLISHABLE_KEY",
                           "secret": true
                         }
                       ],
@@ -4802,7 +4802,7 @@
                         "logo_url": "https://app.acme.co/signup",
                         "primary_color": "#111827",
                         "secondary_color": "#60a5fa",
-                        "ascii_art": "TRIPWIRE",
+                        "ascii_art": "FOIL",
                         "verified": true
                       },
                       "consent": {
@@ -5012,7 +5012,7 @@
                       "env_vars": [
                         {
                           "name": "Acme Growth Workspace",
-                          "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                          "key": "FOIL_PUBLISHABLE_KEY",
                           "secret": true
                         }
                       ],
@@ -5028,7 +5028,7 @@
                         "logo_url": "https://app.acme.co/signup",
                         "primary_color": "#111827",
                         "secondary_color": "#60a5fa",
-                        "ascii_art": "TRIPWIRE",
+                        "ascii_art": "FOIL",
                         "verified": true
                       },
                       "consent": {
@@ -5195,7 +5195,7 @@
                   "env_vars": [
                     {
                       "name": "Acme Growth Workspace",
-                      "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                      "key": "FOIL_PUBLISHABLE_KEY",
                       "secret": true
                     }
                   ],
@@ -5211,7 +5211,7 @@
                     "logo_url": "https://app.acme.co/signup",
                     "primary_color": "#111827",
                     "secondary_color": "#60a5fa",
-                    "ascii_art": "TRIPWIRE",
+                    "ascii_art": "FOIL",
                     "verified": true
                   },
                   "consent": {
@@ -5244,7 +5244,7 @@
                       "env_vars": [
                         {
                           "name": "Acme Growth Workspace",
-                          "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                          "key": "FOIL_PUBLISHABLE_KEY",
                           "secret": true
                         }
                       ],
@@ -5260,7 +5260,7 @@
                         "logo_url": "https://app.acme.co/signup",
                         "primary_color": "#111827",
                         "secondary_color": "#60a5fa",
-                        "ascii_art": "TRIPWIRE",
+                        "ascii_art": "FOIL",
                         "verified": true
                       },
                       "consent": {
@@ -5468,7 +5468,7 @@
                       "env_vars": [
                         {
                           "name": "Acme Growth Workspace",
-                          "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                          "key": "FOIL_PUBLISHABLE_KEY",
                           "secret": true
                         }
                       ],
@@ -5484,7 +5484,7 @@
                         "logo_url": "https://app.acme.co/signup",
                         "primary_color": "#111827",
                         "secondary_color": "#60a5fa",
-                        "ascii_art": "TRIPWIRE",
+                        "ascii_art": "FOIL",
                         "verified": true
                       },
                       "consent": {
@@ -7337,15 +7337,15 @@
           },
           "key_preview": {
             "type": "string",
-            "example": "TRIPWIRE_SAMPLE_KEY"
+            "example": "FOIL_SAMPLE_KEY"
           },
           "display_key": {
             "type": "string",
-            "example": "TRIPWIRE_SAMPLE_KEY"
+            "example": "FOIL_SAMPLE_KEY"
           },
           "revealed_key": {
             "type": "string",
-            "example": "TRIPWIRE_SAMPLE_KEY"
+            "example": "FOIL_SAMPLE_KEY"
           },
           "last_used_at": {
             "type": [
@@ -7399,9 +7399,9 @@
             "*"
           ],
           "rate_limit": 1,
-          "key_preview": "TRIPWIRE_SAMPLE_KEY",
-          "display_key": "TRIPWIRE_SAMPLE_KEY",
-          "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+          "key_preview": "FOIL_SAMPLE_KEY",
+          "display_key": "FOIL_SAMPLE_KEY",
+          "revealed_key": "FOIL_SAMPLE_KEY",
           "last_used_at": "2026-03-24T20:00:05.000Z",
           "created_at": "2026-03-24T20:00:00.000Z",
           "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -7449,9 +7449,9 @@
                   "*"
                 ],
                 "rate_limit": 1,
-                "key_preview": "TRIPWIRE_SAMPLE_KEY",
-                "display_key": "TRIPWIRE_SAMPLE_KEY",
-                "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+                "key_preview": "FOIL_SAMPLE_KEY",
+                "display_key": "FOIL_SAMPLE_KEY",
+                "revealed_key": "FOIL_SAMPLE_KEY",
                 "last_used_at": "2026-03-24T20:00:05.000Z",
                 "created_at": "2026-03-24T20:00:00.000Z",
                 "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -7474,9 +7474,9 @@
                   "*"
                 ],
                 "rate_limit": 1,
-                "key_preview": "TRIPWIRE_SAMPLE_KEY",
-                "display_key": "TRIPWIRE_SAMPLE_KEY",
-                "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+                "key_preview": "FOIL_SAMPLE_KEY",
+                "display_key": "FOIL_SAMPLE_KEY",
+                "revealed_key": "FOIL_SAMPLE_KEY",
                 "last_used_at": "2026-03-24T20:00:05.000Z",
                 "created_at": "2026-03-24T20:00:00.000Z",
                 "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -7516,9 +7516,9 @@
                 "*"
               ],
               "rate_limit": 1,
-              "key_preview": "TRIPWIRE_SAMPLE_KEY",
-              "display_key": "TRIPWIRE_SAMPLE_KEY",
-              "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+              "key_preview": "FOIL_SAMPLE_KEY",
+              "display_key": "FOIL_SAMPLE_KEY",
+              "revealed_key": "FOIL_SAMPLE_KEY",
               "last_used_at": "2026-03-24T20:00:05.000Z",
               "created_at": "2026-03-24T20:00:00.000Z",
               "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -7560,9 +7560,9 @@
                 "*"
               ],
               "rate_limit": 1,
-              "key_preview": "TRIPWIRE_SAMPLE_KEY",
-              "display_key": "TRIPWIRE_SAMPLE_KEY",
-              "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+              "key_preview": "FOIL_SAMPLE_KEY",
+              "display_key": "FOIL_SAMPLE_KEY",
+              "revealed_key": "FOIL_SAMPLE_KEY",
               "last_used_at": "2026-03-24T20:00:05.000Z",
               "created_at": "2026-03-24T20:00:00.000Z",
               "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -7592,9 +7592,9 @@
               "*"
             ],
             "rate_limit": 1,
-            "key_preview": "TRIPWIRE_SAMPLE_KEY",
-            "display_key": "TRIPWIRE_SAMPLE_KEY",
-            "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+            "key_preview": "FOIL_SAMPLE_KEY",
+            "display_key": "FOIL_SAMPLE_KEY",
+            "revealed_key": "FOIL_SAMPLE_KEY",
             "last_used_at": "2026-03-24T20:00:05.000Z",
             "created_at": "2026-03-24T20:00:00.000Z",
             "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -7800,14 +7800,14 @@
               "$ref": "#/components/schemas/GateEnvVar",
               "example": {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             },
             "example": [
               {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             ]
@@ -7841,7 +7841,7 @@
               "logo_url": "https://app.acme.co/signup",
               "primary_color": "#111827",
               "secondary_color": "#60a5fa",
-              "ascii_art": "TRIPWIRE",
+              "ascii_art": "FOIL",
               "verified": true
             }
           },
@@ -7867,7 +7867,7 @@
           "env_vars": [
             {
               "name": "Acme Growth Workspace",
-              "key": "TRIPWIRE_PUBLISHABLE_KEY",
+              "key": "FOIL_PUBLISHABLE_KEY",
               "secret": true
             }
           ],
@@ -7883,7 +7883,7 @@
             "logo_url": "https://app.acme.co/signup",
             "primary_color": "#111827",
             "secondary_color": "#60a5fa",
-            "ascii_art": "TRIPWIRE",
+            "ascii_art": "FOIL",
             "verified": true
           },
           "consent": {
@@ -8624,7 +8624,7 @@
           },
           "ascii_art": {
             "type": "string",
-            "example": "TRIPWIRE"
+            "example": "FOIL"
           },
           "verified": {
             "type": "boolean",
@@ -8636,7 +8636,7 @@
           "logo_url": "https://app.acme.co/signup",
           "primary_color": "#111827",
           "secondary_color": "#60a5fa",
-          "ascii_art": "TRIPWIRE",
+          "ascii_art": "FOIL",
           "verified": true
         }
       },
@@ -8885,7 +8885,7 @@
           },
           "key": {
             "type": "string",
-            "example": "TRIPWIRE_PUBLISHABLE_KEY"
+            "example": "FOIL_PUBLISHABLE_KEY"
           },
           "secret": {
             "type": "boolean",
@@ -8894,7 +8894,7 @@
         },
         "example": {
           "name": "Acme Growth Workspace",
-          "key": "TRIPWIRE_PUBLISHABLE_KEY",
+          "key": "FOIL_PUBLISHABLE_KEY",
           "secret": true
         }
       },
@@ -9045,14 +9045,14 @@
               "$ref": "#/components/schemas/GateEnvVar",
               "example": {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             },
             "example": [
               {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             ]
@@ -9086,7 +9086,7 @@
               "logo_url": "https://app.acme.co/signup",
               "primary_color": "#111827",
               "secondary_color": "#60a5fa",
-              "ascii_art": "TRIPWIRE",
+              "ascii_art": "FOIL",
               "verified": true
             }
           },
@@ -9133,7 +9133,7 @@
           "env_vars": [
             {
               "name": "Acme Growth Workspace",
-              "key": "TRIPWIRE_PUBLISHABLE_KEY",
+              "key": "FOIL_PUBLISHABLE_KEY",
               "secret": true
             }
           ],
@@ -9149,7 +9149,7 @@
             "logo_url": "https://app.acme.co/signup",
             "primary_color": "#111827",
             "secondary_color": "#60a5fa",
-            "ascii_art": "TRIPWIRE",
+            "ascii_art": "FOIL",
             "verified": true
           },
           "consent": {
@@ -9184,7 +9184,7 @@
                 "env_vars": [
                   {
                     "name": "Acme Growth Workspace",
-                    "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                    "key": "FOIL_PUBLISHABLE_KEY",
                     "secret": true
                   }
                 ],
@@ -9200,7 +9200,7 @@
                   "logo_url": "https://app.acme.co/signup",
                   "primary_color": "#111827",
                   "secondary_color": "#60a5fa",
-                  "ascii_art": "TRIPWIRE",
+                  "ascii_art": "FOIL",
                   "verified": true
                 },
                 "consent": {
@@ -9225,7 +9225,7 @@
                 "env_vars": [
                   {
                     "name": "Acme Growth Workspace",
-                    "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                    "key": "FOIL_PUBLISHABLE_KEY",
                     "secret": true
                   }
                 ],
@@ -9241,7 +9241,7 @@
                   "logo_url": "https://app.acme.co/signup",
                   "primary_color": "#111827",
                   "secondary_color": "#60a5fa",
-                  "ascii_art": "TRIPWIRE",
+                  "ascii_art": "FOIL",
                   "verified": true
                 },
                 "consent": {
@@ -9275,7 +9275,7 @@
               "env_vars": [
                 {
                   "name": "Acme Growth Workspace",
-                  "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                  "key": "FOIL_PUBLISHABLE_KEY",
                   "secret": true
                 }
               ],
@@ -9291,7 +9291,7 @@
                 "logo_url": "https://app.acme.co/signup",
                 "primary_color": "#111827",
                 "secondary_color": "#60a5fa",
-                "ascii_art": "TRIPWIRE",
+                "ascii_art": "FOIL",
                 "verified": true
               },
               "consent": {
@@ -9329,7 +9329,7 @@
               "env_vars": [
                 {
                   "name": "Acme Growth Workspace",
-                  "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                  "key": "FOIL_PUBLISHABLE_KEY",
                   "secret": true
                 }
               ],
@@ -9345,7 +9345,7 @@
                 "logo_url": "https://app.acme.co/signup",
                 "primary_color": "#111827",
                 "secondary_color": "#60a5fa",
-                "ascii_art": "TRIPWIRE",
+                "ascii_art": "FOIL",
                 "verified": true
               },
               "consent": {
@@ -9377,7 +9377,7 @@
             "env_vars": [
               {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             ],
@@ -9393,7 +9393,7 @@
               "logo_url": "https://app.acme.co/signup",
               "primary_color": "#111827",
               "secondary_color": "#60a5fa",
-              "ascii_art": "TRIPWIRE",
+              "ascii_art": "FOIL",
               "verified": true
             },
             "consent": {
@@ -9457,14 +9457,14 @@
               "$ref": "#/components/schemas/GateEnvVar",
               "example": {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             },
             "example": [
               {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             ]
@@ -9498,7 +9498,7 @@
               "logo_url": "https://app.acme.co/signup",
               "primary_color": "#111827",
               "secondary_color": "#60a5fa",
-              "ascii_art": "TRIPWIRE",
+              "ascii_art": "FOIL",
               "verified": true
             }
           },
@@ -9527,7 +9527,7 @@
           "env_vars": [
             {
               "name": "Acme Growth Workspace",
-              "key": "TRIPWIRE_PUBLISHABLE_KEY",
+              "key": "FOIL_PUBLISHABLE_KEY",
               "secret": true
             }
           ],
@@ -9543,7 +9543,7 @@
             "logo_url": "https://app.acme.co/signup",
             "primary_color": "#111827",
             "secondary_color": "#60a5fa",
-            "ascii_art": "TRIPWIRE",
+            "ascii_art": "FOIL",
             "verified": true
           },
           "consent": {
@@ -9572,7 +9572,7 @@
               "env_vars": [
                 {
                   "name": "Acme Growth Workspace",
-                  "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                  "key": "FOIL_PUBLISHABLE_KEY",
                   "secret": true
                 }
               ],
@@ -9588,7 +9588,7 @@
                 "logo_url": "https://app.acme.co/signup",
                 "primary_color": "#111827",
                 "secondary_color": "#60a5fa",
-                "ascii_art": "TRIPWIRE",
+                "ascii_art": "FOIL",
                 "verified": true
               },
               "consent": {
@@ -9616,7 +9616,7 @@
             "env_vars": [
               {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             ],
@@ -9632,7 +9632,7 @@
               "logo_url": "https://app.acme.co/signup",
               "primary_color": "#111827",
               "secondary_color": "#60a5fa",
-              "ascii_art": "TRIPWIRE",
+              "ascii_art": "FOIL",
               "verified": true
             },
             "consent": {
@@ -9667,7 +9667,7 @@
                 "env_vars": [
                   {
                     "name": "Acme Growth Workspace",
-                    "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                    "key": "FOIL_PUBLISHABLE_KEY",
                     "secret": true
                   }
                 ],
@@ -9683,7 +9683,7 @@
                   "logo_url": "https://app.acme.co/signup",
                   "primary_color": "#111827",
                   "secondary_color": "#60a5fa",
-                  "ascii_art": "TRIPWIRE",
+                  "ascii_art": "FOIL",
                   "verified": true
                 },
                 "consent": {
@@ -9704,7 +9704,7 @@
                 "env_vars": [
                   {
                     "name": "Acme Growth Workspace",
-                    "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                    "key": "FOIL_PUBLISHABLE_KEY",
                     "secret": true
                   }
                 ],
@@ -9720,7 +9720,7 @@
                   "logo_url": "https://app.acme.co/signup",
                   "primary_color": "#111827",
                   "secondary_color": "#60a5fa",
-                  "ascii_art": "TRIPWIRE",
+                  "ascii_art": "FOIL",
                   "verified": true
                 },
                 "consent": {
@@ -9750,7 +9750,7 @@
               "env_vars": [
                 {
                   "name": "Acme Growth Workspace",
-                  "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                  "key": "FOIL_PUBLISHABLE_KEY",
                   "secret": true
                 }
               ],
@@ -9766,7 +9766,7 @@
                 "logo_url": "https://app.acme.co/signup",
                 "primary_color": "#111827",
                 "secondary_color": "#60a5fa",
-                "ascii_art": "TRIPWIRE",
+                "ascii_art": "FOIL",
                 "verified": true
               },
               "consent": {
@@ -10388,15 +10388,15 @@
           },
           "key_preview": {
             "type": "string",
-            "example": "TRIPWIRE_SAMPLE_KEY"
+            "example": "FOIL_SAMPLE_KEY"
           },
           "display_key": {
             "type": "string",
-            "example": "TRIPWIRE_SAMPLE_KEY"
+            "example": "FOIL_SAMPLE_KEY"
           },
           "revealed_key": {
             "type": "string",
-            "example": "TRIPWIRE_SAMPLE_KEY"
+            "example": "FOIL_SAMPLE_KEY"
           },
           "last_used_at": {
             "type": [
@@ -10450,9 +10450,9 @@
             "*"
           ],
           "rate_limit": 1,
-          "key_preview": "TRIPWIRE_SAMPLE_KEY",
-          "display_key": "TRIPWIRE_SAMPLE_KEY",
-          "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+          "key_preview": "FOIL_SAMPLE_KEY",
+          "display_key": "FOIL_SAMPLE_KEY",
+          "revealed_key": "FOIL_SAMPLE_KEY",
           "last_used_at": "2026-03-24T20:00:05.000Z",
           "created_at": "2026-03-24T20:00:00.000Z",
           "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -10484,9 +10484,9 @@
                 "*"
               ],
               "rate_limit": 1,
-              "key_preview": "TRIPWIRE_SAMPLE_KEY",
-              "display_key": "TRIPWIRE_SAMPLE_KEY",
-              "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+              "key_preview": "FOIL_SAMPLE_KEY",
+              "display_key": "FOIL_SAMPLE_KEY",
+              "revealed_key": "FOIL_SAMPLE_KEY",
               "last_used_at": "2026-03-24T20:00:05.000Z",
               "created_at": "2026-03-24T20:00:00.000Z",
               "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -10516,9 +10516,9 @@
               "*"
             ],
             "rate_limit": 1,
-            "key_preview": "TRIPWIRE_SAMPLE_KEY",
-            "display_key": "TRIPWIRE_SAMPLE_KEY",
-            "revealed_key": "TRIPWIRE_SAMPLE_KEY",
+            "key_preview": "FOIL_SAMPLE_KEY",
+            "display_key": "FOIL_SAMPLE_KEY",
+            "revealed_key": "FOIL_SAMPLE_KEY",
             "last_used_at": "2026-03-24T20:00:05.000Z",
             "created_at": "2026-03-24T20:00:00.000Z",
             "rotated_at": "2026-03-24T20:00:05.000Z",
@@ -11940,7 +11940,7 @@
                     "ro_hardware": "ro_hardware",
                     "ro_product_model": "chrome",
                     "simulator_env_keys": [
-                      "TRIPWIRE_SAMPLE_KEY"
+                      "FOIL_SAMPLE_KEY"
                     ]
                   },
                   "hardware_claims_mismatch": {
@@ -12054,7 +12054,7 @@
                 "ro_hardware": "ro_hardware",
                 "ro_product_model": "chrome",
                 "simulator_env_keys": [
-                  "TRIPWIRE_SAMPLE_KEY"
+                  "FOIL_SAMPLE_KEY"
                 ]
               },
               "hardware_claims_mismatch": {
@@ -12797,7 +12797,7 @@
               "ro_hardware": "ro_hardware",
               "ro_product_model": "chrome",
               "simulator_env_keys": [
-                "TRIPWIRE_SAMPLE_KEY"
+                "FOIL_SAMPLE_KEY"
               ]
             },
             "hardware_claims_mismatch": {
@@ -13529,7 +13529,7 @@
                   "ro_hardware": "ro_hardware",
                   "ro_product_model": "chrome",
                   "simulator_env_keys": [
-                    "TRIPWIRE_SAMPLE_KEY"
+                    "FOIL_SAMPLE_KEY"
                   ]
                 },
                 "hardware_claims_mismatch": {
@@ -14053,7 +14053,7 @@
                 "ro_hardware": "ro_hardware",
                 "ro_product_model": "chrome",
                 "simulator_env_keys": [
-                  "TRIPWIRE_SAMPLE_KEY"
+                  "FOIL_SAMPLE_KEY"
                 ]
               },
               "hardware_claims_mismatch": {
@@ -16202,7 +16202,7 @@
               "ro_hardware": "ro_hardware",
               "ro_product_model": "chrome",
               "simulator_env_keys": [
-                "TRIPWIRE_SAMPLE_KEY"
+                "FOIL_SAMPLE_KEY"
               ]
             }
           },
@@ -16323,7 +16323,7 @@
             "ro_hardware": "ro_hardware",
             "ro_product_model": "chrome",
             "simulator_env_keys": [
-              "TRIPWIRE_SAMPLE_KEY"
+              "FOIL_SAMPLE_KEY"
             ]
           },
           "hardware_claims_mismatch": {
@@ -16436,10 +16436,10 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "TRIPWIRE_SAMPLE_KEY"
+              "example": "FOIL_SAMPLE_KEY"
             },
             "example": [
-              "TRIPWIRE_SAMPLE_KEY"
+              "FOIL_SAMPLE_KEY"
             ]
           }
         },
@@ -16452,7 +16452,7 @@
           "ro_hardware": "ro_hardware",
           "ro_product_model": "chrome",
           "simulator_env_keys": [
-            "TRIPWIRE_SAMPLE_KEY"
+            "FOIL_SAMPLE_KEY"
           ]
         }
       },
@@ -18383,14 +18383,14 @@
               "$ref": "#/components/schemas/GateEnvVar",
               "example": {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             },
             "example": [
               {
                 "name": "Acme Growth Workspace",
-                "key": "TRIPWIRE_PUBLISHABLE_KEY",
+                "key": "FOIL_PUBLISHABLE_KEY",
                 "secret": true
               }
             ]
@@ -18424,7 +18424,7 @@
               "logo_url": "https://app.acme.co/signup",
               "primary_color": "#111827",
               "secondary_color": "#60a5fa",
-              "ascii_art": "TRIPWIRE",
+              "ascii_art": "FOIL",
               "verified": true
             }
           },
@@ -18449,7 +18449,7 @@
           "env_vars": [
             {
               "name": "Acme Growth Workspace",
-              "key": "TRIPWIRE_PUBLISHABLE_KEY",
+              "key": "FOIL_PUBLISHABLE_KEY",
               "secret": true
             }
           ],
@@ -18465,7 +18465,7 @@
             "logo_url": "https://app.acme.co/signup",
             "primary_color": "#111827",
             "secondary_color": "#60a5fa",
-            "ascii_art": "TRIPWIRE",
+            "ascii_art": "FOIL",
             "verified": true
           },
           "consent": {
@@ -20310,10 +20310,10 @@
         ],
         "operationId": "gateSessionApprovedWebhook",
         "summary": "Gate approved-session webhook",
-        "description": "Tripwire sends a signed unified webhook envelope. Verify X-Tripwire-Timestamp and X-Tripwire-Signature against the raw request body using the endpoint signing secret.",
+        "description": "Foil sends a signed unified webhook envelope. Verify X-Foil-Timestamp and X-Foil-Signature against the raw request body using the endpoint signing secret.",
         "parameters": [
           {
-            "name": "X-Tripwire-Timestamp",
+            "name": "X-Foil-Timestamp",
             "in": "header",
             "required": true,
             "schema": {
@@ -20322,7 +20322,7 @@
             "description": "Unix timestamp used in the webhook signature base string."
           },
           {
-            "name": "X-Tripwire-Signature",
+            "name": "X-Foil-Signature",
             "in": "header",
             "required": true,
             "schema": {
@@ -20377,10 +20377,10 @@
         ],
         "operationId": "sessionFingerprintCalculatedWebhook",
         "summary": "Session fingerprint calculated webhook",
-        "description": "Tripwire sends a signed unified webhook envelope. Verify X-Tripwire-Timestamp and X-Tripwire-Signature against the raw request body using the endpoint signing secret.",
+        "description": "Foil sends a signed unified webhook envelope. Verify X-Foil-Timestamp and X-Foil-Signature against the raw request body using the endpoint signing secret.",
         "parameters": [
           {
-            "name": "X-Tripwire-Timestamp",
+            "name": "X-Foil-Timestamp",
             "in": "header",
             "required": true,
             "schema": {
@@ -20389,7 +20389,7 @@
             "description": "Unix timestamp used in the webhook signature base string."
           },
           {
-            "name": "X-Tripwire-Signature",
+            "name": "X-Foil-Signature",
             "in": "header",
             "required": true,
             "schema": {
@@ -20431,10 +20431,10 @@
         ],
         "operationId": "sessionResultPersistedWebhook",
         "summary": "Session result persisted webhook",
-        "description": "Tripwire sends a signed unified webhook envelope. Verify X-Tripwire-Timestamp and X-Tripwire-Signature against the raw request body using the endpoint signing secret.",
+        "description": "Foil sends a signed unified webhook envelope. Verify X-Foil-Timestamp and X-Foil-Signature against the raw request body using the endpoint signing secret.",
         "parameters": [
           {
-            "name": "X-Tripwire-Timestamp",
+            "name": "X-Foil-Timestamp",
             "in": "header",
             "required": true,
             "schema": {
@@ -20443,7 +20443,7 @@
             "description": "Unix timestamp used in the webhook signature base string."
           },
           {
-            "name": "X-Tripwire-Signature",
+            "name": "X-Foil-Signature",
             "in": "header",
             "required": true,
             "schema": {
