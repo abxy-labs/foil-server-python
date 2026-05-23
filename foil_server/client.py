@@ -145,6 +145,9 @@ def _parse_session_summary(data: dict[str, Any]) -> SessionSummary:
         object=str(data["object"]),
         id=str(data["id"]),
         created_at=data.get("created_at"),
+        client_user_id=data.get("client_user_id")
+        if isinstance(data.get("client_user_id"), str) or data.get("client_user_id") is None
+        else None,
         latest_decision=_parse_decision(dict(data["latest_decision"])),
         visitor_fingerprint=_parse_visitor_fingerprint_link(data.get("visitor_fingerprint")),
     )
@@ -155,6 +158,9 @@ def _parse_session_detail(data: dict[str, Any]) -> SessionDetail:
         object=str(data["object"]),
         id=str(data["id"]),
         created_at=data.get("created_at"),
+        client_user_id=data.get("client_user_id")
+        if isinstance(data.get("client_user_id"), str) or data.get("client_user_id") is None
+        else None,
         decision=_parse_session_decision(dict(data["decision"])),
         highlights=[dict(item) for item in data.get("highlights", []) if isinstance(item, dict)],
         attribution=dict(data.get("attribution")) if isinstance(data.get("attribution"), dict) else None,
@@ -568,6 +574,22 @@ class SessionsAPI(_BaseAPI):
 
     def get(self, session_id: str) -> SessionDetail:
         response = self._client._request_json("GET", f"/v1/sessions/{session_id}")
+        return _parse_session_detail(dict(response["data"]))
+
+    def attach_client_user(self, session_id: str, client_user_id: str) -> SessionDetail:
+        response = self._client._request_json(
+            "PATCH",
+            f"/v1/sessions/{session_id}",
+            body={"client_user_id": client_user_id},
+        )
+        return _parse_session_detail(dict(response["data"]))
+
+    def clear_client_user(self, session_id: str) -> SessionDetail:
+        response = self._client._request_json(
+            "PATCH",
+            f"/v1/sessions/{session_id}",
+            body={"client_user_id": None},
+        )
         return _parse_session_detail(dict(response["data"]))
 
     def iter(

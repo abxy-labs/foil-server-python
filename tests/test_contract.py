@@ -104,6 +104,14 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(schemas["ApiKeyId"]["pattern"], "^key_[0123456789abcdefghjkmnpqrstvwxyz]{26}$")
 
         self.assertEqual(strip_examples(schemas["SessionSummary"]["properties"]["id"]), {"$ref": "#/components/schemas/SessionId"})
+        self.assertEqual(
+            strip_examples(schemas["SessionSummary"]["properties"]["client_user_id"]),
+            {
+                "type": ["string", "null"],
+                "maxLength": 256,
+                "description": "Customer-supplied identifier for the end user associated with this Foil session. Set with PATCH /v1/sessions/{sessionId}.",
+            },
+        )
         self.assertEqual(strip_examples(schemas["Organization"]["properties"]["status"]), {"$ref": "#/components/schemas/OrganizationStatus"})
         self.assertEqual(strip_examples(schemas["ApiKey"]["properties"]["status"]), {"$ref": "#/components/schemas/ApiKeyStatus"})
         self.assertEqual(
@@ -113,7 +121,7 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(schemas["OrganizationStatus"]["enum"], ["active", "suspended", "deleted"])
         self.assertEqual(schemas["ApiKeyStatus"]["enum"], ["active", "rotating", "revoked"])
         self.assertTrue(
-            {"decision", "highlights", "attribution", "web_bot_auth", "network", "runtime_integrity", "visitor_fingerprint", "connection_fingerprint", "previous_decisions", "request", "browser", "device", "analysis_coverage", "signals_fired", "client_telemetry"}.issubset(
+            {"client_user_id", "decision", "highlights", "attribution", "web_bot_auth", "network", "runtime_integrity", "visitor_fingerprint", "connection_fingerprint", "previous_decisions", "request", "browser", "device", "analysis_coverage", "signals_fired", "client_telemetry"}.issubset(
                 set(schemas["SessionDetail"]["required"])
             )
         )
@@ -157,6 +165,8 @@ class ContractTests(unittest.TestCase):
 
         self.assertEqual(paths["/v1/sessions"]["get"]["operationId"], "listSessions")
         self.assertEqual(paths["/v1/sessions"]["get"]["tags"], ["Sessions"])
+        self.assertEqual(paths["/v1/sessions/{sessionId}"]["patch"]["operationId"], "updateSession")
+        self.assertEqual(paths["/v1/sessions/{sessionId}"]["patch"]["tags"], ["Sessions"])
         self.assertEqual(paths["/v1/fingerprints/{visitorId}"]["get"]["operationId"], "getVisitorFingerprint")
         self.assertEqual(paths["/v1/fingerprints/{visitorId}"]["get"]["tags"], ["Visitor fingerprints"])
         self.assertEqual(paths["/v1/organizations/{organizationId}"]["patch"]["operationId"], "updateOrganization")
