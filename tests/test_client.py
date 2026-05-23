@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import unittest
 
@@ -142,6 +143,7 @@ class ClientTests(unittest.TestCase):
         try:
             session = client.sessions.get("sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(session.id, "sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(session.client_user_id, "user_123")
             self.assertIsNone(session.native_runtime_integrity)
             self.assertIsNone(session.native_app)
             self.assertIsNone(session.native_carrier)
@@ -152,6 +154,27 @@ class ClientTests(unittest.TestCase):
             self.assertEqual(fp_page.items[0].id, "vid_456789abcdefghjkmnpqrstvwx")
             fp_detail = client.fingerprints.get("vid_456789abcdefghjkmnpqrstvwx")
             self.assertEqual(fp_detail.id, "vid_456789abcdefghjkmnpqrstvwx")
+        finally:
+            client.close()
+
+    def test_attach_and_clear_client_user_id(self) -> None:
+        session_fixture = load_fixture("api/sessions/detail.json")
+        seen_bodies: list[dict[str, object]] = []
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            self.assertEqual(request.method, "PATCH")
+            self.assertEqual(request.url.path, "/v1/sessions/sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(request.headers["Authorization"], "Bearer sk_live_test")
+            seen_bodies.append(json.loads(request.content.decode("utf-8")))
+            return json_response(session_fixture)
+
+        client = Foil(secret_key="sk_live_test", transport=httpx.MockTransport(handler))
+        try:
+            attached = client.sessions.attach_client_user("sid_0123456789abcdefghjkmnpqrs", "user_123")
+            cleared = client.sessions.clear_client_user("sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(attached.id, "sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(cleared.id, "sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(seen_bodies, [{"client_user_id": "user_123"}, {"client_user_id": None}])
         finally:
             client.close()
 

@@ -42,6 +42,8 @@ client = Foil(secret_key="sk_live_...")
 
 page = client.sessions.list(verdict="bot", limit=25)
 session = client.sessions.get("sid_123")
+client.sessions.attach_client_user("sid_123", "user_123")
+client.sessions.clear_client_user("sid_123")
 ```
 
 ### Sealed token verification
