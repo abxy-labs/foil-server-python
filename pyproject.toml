@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "foil-server"
-version = "0.2.4"
+version = "0.2.5"
 description = "Official Foil Python server SDK"
 readme = "README.md"
 license = { text = "MIT" }
