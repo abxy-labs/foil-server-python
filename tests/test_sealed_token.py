@@ -19,6 +19,12 @@ class SealedTokenTests(unittest.TestCase):
         verified = verify_foil_token(fixture["token"], fixture["secretHash"])
         self.assertEqual(verified.raw, fixture["payload"])
 
+    def test_verify_multi_recipient_vector_with_every_active_key(self) -> None:
+        fixture = load_fixture("sealed-token/vector.v2.json")
+        for secret in fixture["secretKeys"] + fixture["secretHashes"]:
+            verified = verify_foil_token(fixture["token"], secret)
+            self.assertEqual(verified.raw, fixture["payload"])
+
     def test_invalid_token_returns_failure_result(self) -> None:
         fixture = load_fixture("sealed-token/invalid.json")
         result = safe_verify_foil_token(fixture["token"], "sk_live_fixture_secret")
