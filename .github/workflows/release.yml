@@ -78,7 +78,7 @@ jobs:
 
       - run: python -m pip install --upgrade pip build
       - run: python -m pip install -e .
-      - run: python -m unittest tests.test_client tests.test_contract tests.test_sealed_token
+      - run: python -m unittest tests.test_client tests.test_contract tests.test_sealed_token tests.test_webhooks
       - run: python -m build
 
       - uses: actions/upload-artifact@v7

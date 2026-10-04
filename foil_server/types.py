@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Generic, TypeVar
-from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PrivateKey
 
 T = TypeVar("T")
 
@@ -212,132 +211,6 @@ class IssuedApiKey(ApiKey):
 
 
 @dataclass(frozen=True)
-class GateServiceEnvVar:
-    name: str
-    key: str
-    secret: bool
-
-
-@dataclass(frozen=True)
-class GateServiceSdkInstall:
-    label: str
-    install: str
-    url: str
-
-
-@dataclass(frozen=True)
-class GateServiceBranding:
-    verified: bool
-    logo_url: str | None = None
-    primary_color: str | None = None
-    secondary_color: str | None = None
-    ascii_art: str | None = None
-
-
-@dataclass(frozen=True)
-class GateServiceConsent:
-    terms_url: str | None = None
-    privacy_url: str | None = None
-
-
-@dataclass(frozen=True)
-class GateRegistryEntry:
-    id: str
-    status: str
-    discoverable: bool
-    name: str
-    description: str
-    website: str
-    env_vars: list[GateServiceEnvVar]
-    docs_url: str
-    sdks: list[GateServiceSdkInstall]
-    branding: GateServiceBranding
-    consent: GateServiceConsent
-    dashboard_login_url: str | None = None
-
-
-@dataclass(frozen=True)
-class GateManagedService:
-    object: str
-    id: str
-    status: str
-    discoverable: bool
-    name: str
-    description: str
-    website: str
-    dashboard_login_url: str | None
-    webhook_endpoint_id: str | None
-    env_vars: list[GateServiceEnvVar]
-    docs_url: str
-    sdks: list[GateServiceSdkInstall]
-    branding: GateServiceBranding
-    consent: GateServiceConsent
-    created_at: str
-    updated_at: str
-
-
-@dataclass(frozen=True)
-class GateDeliveryRequest:
-    version: int
-    algorithm: str
-    key_id: str
-    public_key: str
-
-
-@dataclass(frozen=True)
-class GateDeliveryEnvelope:
-    version: int
-    algorithm: str
-    key_id: str
-    ephemeral_public_key: str
-    salt: str
-    iv: str
-    ciphertext: str
-    tag: str
-
-
-@dataclass(frozen=True)
-class GateDeliveryBundle:
-    integrator: GateDeliveryEnvelope
-    gate: GateDeliveryEnvelope
-
-
-@dataclass(frozen=True)
-class GateDeliveryPayload:
-    version: int
-    outputs: dict[str, str]
-    ack_token: str | None = None
-
-
-@dataclass(frozen=True)
-class GeneratedDeliveryKeyPair:
-    delivery: GateDeliveryRequest
-    private_key: X25519PrivateKey
-
-
-@dataclass(frozen=True)
-class GateEncryptedDeliveryResponse:
-    encrypted_delivery: GateDeliveryEnvelope
-
-
-@dataclass(frozen=True)
-class GateApprovedWebhookFoil:
-    verdict: str
-    score: float | None
-
-
-@dataclass(frozen=True)
-class GateApprovedWebhookPayload:
-    service_id: str
-    gate_session_id: str
-    gate_account_id: str
-    account_name: str
-    metadata: dict[str, Any] | None
-    foil: GateApprovedWebhookFoil
-    delivery: GateDeliveryRequest
-
-
-@dataclass(frozen=True)
 class WebhookEndpoint:
     object: str
     id: str
@@ -397,61 +270,7 @@ class WebhookEventEnvelope:
     object: str
     type: str
     created: str
-    data: dict[str, Any] | GateApprovedWebhookPayload
-
-
-@dataclass(frozen=True)
-class GateSessionCreate:
-    object: str
-    id: str
-    status: str
-    poll_token: str
-    consent_url: str
-    expires_at: str
-
-
-@dataclass(frozen=True)
-class GateSessionPollData:
-    object: str
-    id: str
-    status: str
-    expires_at: str | None = None
-    gate_account_id: str | None = None
-    account_name: str | None = None
-    delivery_bundle: GateDeliveryBundle | None = None
-    docs_url: str | None = None
-
-
-@dataclass(frozen=True)
-class GateSessionDeliveryAcknowledgement:
-    object: str
-    gate_session_id: str
-    status: str
-
-
-@dataclass(frozen=True)
-class GateLoginSession:
-    object: str
-    id: str
-    status: str
-    consent_url: str
-    expires_at: str
-
-
-@dataclass(frozen=True)
-class GateDashboardLogin:
-    object: str
-    gate_account_id: str
-    account_name: str
-
-
-@dataclass(frozen=True)
-class AgentTokenVerification:
-    valid: bool
-    gate_account_id: str | None = None
-    status: str | None = None
-    created_at: str | None = None
-    expires_at: str | None = None
+    data: dict[str, Any]
 
 
 @dataclass(frozen=True)
