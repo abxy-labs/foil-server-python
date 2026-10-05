@@ -9,7 +9,6 @@ from typing import Any
 from .types import WebhookEventEnvelope
 
 WEBHOOK_EVENT_TYPES = {
-    "session.fingerprint.calculated",
     "session.result.persisted",
     "webhook.test",
 }
@@ -19,11 +18,13 @@ def verify_webhook_signature(
     *,
     secret: str,
     timestamp: str,
-    raw_body: str,
+    raw_body: str | bytes,
     signature: str,
     max_age_seconds: int = 5 * 60,
     now_seconds: int | None = None,
 ) -> bool:
+    if not secret:
+        return False
     try:
         parsed_timestamp = int(timestamp)
     except ValueError:
@@ -31,7 +32,8 @@ def verify_webhook_signature(
     current = now_seconds if now_seconds is not None else int(time.time())
     if abs(current - parsed_timestamp) > max_age_seconds:
         return False
-    expected = hmac.new(secret.encode("utf-8"), f"{timestamp}.{raw_body}".encode("utf-8"), hashlib.sha256).hexdigest()
+    body = bytes(raw_body) if isinstance(raw_body, (bytes, bytearray)) else raw_body.encode("utf-8")
+    expected = hmac.new(secret.encode("utf-8"), timestamp.encode("utf-8") + b"." + body, hashlib.sha256).hexdigest()
     return hmac.compare_digest(expected, signature)
 
 
@@ -70,7 +72,7 @@ def verify_and_parse_webhook_event(
     *,
     secret: str,
     timestamp: str,
-    raw_body: str,
+    raw_body: str | bytes,
     signature: str,
     max_age_seconds: int = 5 * 60,
     now_seconds: int | None = None,

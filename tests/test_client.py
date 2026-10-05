@@ -249,7 +249,7 @@ class ClientTests(unittest.TestCase):
             "id": "wdlv_0123456789abcdef0123456789abcdef",
             "event_id": "wevt_0123456789abcdef0123456789abcdef",
             "endpoint_id": "we_0123456789abcdef0123456789abcdef",
-            "event_type": "session.fingerprint.calculated",
+            "event_type": "session.result.persisted",
             "status": "succeeded",
             "attempts": 1,
             "response_status": 200,
@@ -261,7 +261,7 @@ class ClientTests(unittest.TestCase):
         event = {
             "object": "event",
             "id": "wevt_0123456789abcdef0123456789abcdef",
-            "type": "session.fingerprint.calculated",
+            "type": "session.result.persisted",
             "subject": {"type": "session", "id": "sid_0123456789abcdefghjkmnpqrs"},
             "data": {"source": "waitForFingerprint"},
             "webhook_deliveries": [delivery],
@@ -281,7 +281,7 @@ class ClientTests(unittest.TestCase):
             self.assertEqual(request.headers["Authorization"], "Bearer sk_live_test")
             if request.url.path == "/v1/organizations/org_56789abcdefghjkmnpqrstvwxy/events":
                 self.assertEqual(request.url.params.get("endpoint_id"), "we_0123456789abcdef0123456789abcdef")
-                self.assertEqual(request.url.params.get("type"), "session.fingerprint.calculated")
+                self.assertEqual(request.url.params.get("type"), "session.result.persisted")
                 return json_response(list_response)
             if request.url.path == "/v1/organizations/org_56789abcdefghjkmnpqrstvwxy/events/wevt_0123456789abcdef0123456789abcdef":
                 return json_response(detail_response)
@@ -292,7 +292,7 @@ class ClientTests(unittest.TestCase):
             page = client.webhooks.list_events(
                 "org_56789abcdefghjkmnpqrstvwxy",
                 endpoint_id="we_0123456789abcdef0123456789abcdef",
-                type="session.fingerprint.calculated",
+                type="session.result.persisted",
                 limit=25,
             )
             self.assertEqual(page.items[0].subject.id, "sid_0123456789abcdefghjkmnpqrs")
@@ -301,7 +301,7 @@ class ClientTests(unittest.TestCase):
                 "org_56789abcdefghjkmnpqrstvwxy",
                 "wevt_0123456789abcdef0123456789abcdef",
             )
-            self.assertEqual(fetched.type, "session.fingerprint.calculated")
+            self.assertEqual(fetched.type, "session.result.persisted")
         finally:
             client.close()
 
