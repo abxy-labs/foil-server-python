@@ -13,7 +13,7 @@ authors = [
   { name = "ABXY Labs" }
 ]
 dependencies = [
-  "cryptography>=42,<47",
+  "cryptography>=50.0.0,<51",
   "httpx>=0.27,<1"
 ]
 
