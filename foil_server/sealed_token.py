@@ -24,6 +24,8 @@ V2_HEADER_BYTES = 1 + 2 + NONCE_BYTES + 4
 V2_RECIPIENT_BYTES = RECIPIENT_ID_BYTES + NONCE_BYTES + CONTENT_KEY_BYTES + TAG_BYTES
 V2_PAYLOAD_AAD_PREFIX = b"foil-sealed-results-v2\0payload\0"
 V2_WRAP_AAD_PREFIX = b"foil-sealed-results-v2\0recipient\0"
+# Decompressed payloads are a few kilobytes; the cap bounds memory if a token decompresses to far more.
+MAX_PAYLOAD_BYTES = 1024 * 1024
 
 
 def _resolve_secret(secret_key: str | None) -> str:
@@ -157,6 +159,16 @@ def _build_verified_token(payload: dict[str, object]) -> VerifiedFoilToken:
     )
 
 
+def _decompress_payload(compressed: bytes) -> bytes:
+    decompressor = zlib.decompressobj()
+    payload = decompressor.decompress(compressed, MAX_PAYLOAD_BYTES + 1)
+    if len(payload) > MAX_PAYLOAD_BYTES:
+        raise FoilTokenVerificationError("Foil token payload is too large.")
+    if not decompressor.eof:
+        raise zlib.error("Foil token payload is truncated.")
+    return payload
+
+
 def verify_foil_token(sealed_token: str, secret_key: str | None = None) -> VerifiedFoilToken:
     try:
         resolved_secret = _resolve_secret(secret_key)
@@ -165,7 +177,7 @@ def verify_foil_token(sealed_token: str, secret_key: str | None = None) -> Verif
             raise FoilTokenVerificationError("Foil token is too short.")
 
         compressed = _decrypt_payload(raw, resolved_secret)
-        payload = json.loads(zlib.decompress(compressed).decode("utf-8"))
+        payload = json.loads(_decompress_payload(compressed).decode("utf-8"))
         if not isinstance(payload, dict):
             raise FoilTokenVerificationError("Foil token payload is invalid.")
         return _build_verified_token(payload)
