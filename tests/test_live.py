@@ -80,7 +80,7 @@ class LiveSmokeTests(unittest.TestCase):
                 environment="test",
             )
             created_key_id = created_key.id
-            self.assertTrue(created_key.revealed_key.startswith("sk_"))
+            self.assertTrue(created_key.revealed_key.startswith("pk_test_"))
 
             listed_key = find_api_key(client, organization_id, created_key.id)
             self.assertIsNotNone(listed_key)
@@ -89,7 +89,7 @@ class LiveSmokeTests(unittest.TestCase):
 
             rotated_key = client.organizations.api_keys.rotate(organization_id, created_key.id)
             rotated_key_id = rotated_key.id
-            self.assertTrue(rotated_key.revealed_key.startswith("sk_"))
+            self.assertTrue(rotated_key.revealed_key.startswith("pk_test_"))
 
             fixture = load_fixture("sealed-token/vector.v1.json")
             verified = safe_verify_foil_token(fixture["token"], fixture["secretKey"])
