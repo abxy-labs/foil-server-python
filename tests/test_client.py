@@ -108,8 +108,11 @@ class ClientTests(unittest.TestCase):
             },
         }
 
+        seen_queries: list[dict[str, str]] = []
+
         def handler(request: httpx.Request) -> httpx.Response:
             self.assertEqual(request.headers["Authorization"], "Bearer sk_live_test")
+            seen_queries.append(dict(request.url.params))
             cursor = request.url.params.get("cursor")
             return json_response(second_page if cursor else first_page)
 
@@ -119,10 +122,43 @@ class ClientTests(unittest.TestCase):
             self.assertEqual(page.limit, 50)
             self.assertTrue(page.has_more)
             self.assertEqual(page.next_cursor, "cur_sessions_page_2")
+            self.assertEqual(seen_queries, [{"verdict": "bot", "limit": "25"}])
             self.assertEqual(
                 [item.id for item in client.sessions.iter(verdict="human")],
                 ["sid_0123456789abcdefghjkmnpqrs", "sid_123456789abcdefghjkmnpqrst"],
             )
+        finally:
+            client.close()
+
+    def test_sessions_list_and_iter_filter_by_client_ids(self) -> None:
+        first_page = load_fixture("api/sessions/list.json")
+        second_page = {**first_page, "pagination": {"limit": 50, "has_more": False}}
+        seen_queries: list[dict[str, str]] = []
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            seen_queries.append(dict(request.url.params))
+            return json_response(second_page if request.url.params.get("cursor") else first_page)
+
+        client = Foil(secret_key="sk_live_test", transport=httpx.MockTransport(handler))
+        try:
+            page = client.sessions.list(client_user_id="user_123", client_application_id="app_123", limit=10)
+            self.assertEqual(page.items[0].client_user_id, "user_123")
+            self.assertEqual(page.items[0].client_application_id, "app_123")
+            self.assertEqual(
+                seen_queries,
+                [{"limit": "10", "client_user_id": "user_123", "client_application_id": "app_123"}],
+            )
+
+            seen_queries.clear()
+            list(client.sessions.iter(client_user_id="user_123", client_application_id="app_123"))
+            self.assertEqual(len(seen_queries), 2)
+            for query in seen_queries:
+                self.assertEqual(query["client_user_id"], "user_123")
+                self.assertEqual(query["client_application_id"], "app_123")
+
+            seen_queries.clear()
+            client.sessions.list(client_application_id="app_123")
+            self.assertEqual(seen_queries, [{"client_application_id": "app_123"}])
         finally:
             client.close()
 
@@ -144,6 +180,7 @@ class ClientTests(unittest.TestCase):
             session = client.sessions.get("sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(session.id, "sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(session.client_user_id, "user_123")
+            self.assertEqual(session.client_application_id, "app_123")
             self.assertIsNone(session.native_runtime_integrity)
             self.assertIsNone(session.native_app)
             self.assertIsNone(session.native_carrier)
@@ -178,6 +215,27 @@ class ClientTests(unittest.TestCase):
             self.assertEqual(attached.id, "sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(cleared.id, "sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(seen_bodies, [{"client_user_id": "user_123"}, {"client_user_id": None}])
+        finally:
+            client.close()
+
+    def test_attach_and_clear_client_application_id(self) -> None:
+        session_fixture = load_fixture("api/sessions/detail.json")
+        seen_bodies: list[dict[str, object]] = []
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            self.assertEqual(request.method, "PATCH")
+            self.assertEqual(request.url.path, "/v1/sessions/sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(request.headers["Authorization"], "Bearer sk_live_test")
+            seen_bodies.append(json.loads(request.content.decode("utf-8")))
+            return json_response(session_fixture)
+
+        client = Foil(secret_key="sk_live_test", transport=httpx.MockTransport(handler))
+        try:
+            attached = client.sessions.attach_client_application("sid_0123456789abcdefghjkmnpqrs", "app_123")
+            cleared = client.sessions.clear_client_application("sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(attached.id, "sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(cleared.id, "sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(seen_bodies, [{"client_application_id": "app_123"}, {"client_application_id": None}])
         finally:
             client.close()
 

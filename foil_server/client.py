@@ -134,6 +134,9 @@ def _parse_session_summary(data: dict[str, Any]) -> SessionSummary:
         client_user_id=data.get("client_user_id")
         if isinstance(data.get("client_user_id"), str) or data.get("client_user_id") is None
         else None,
+        client_application_id=data.get("client_application_id")
+        if isinstance(data.get("client_application_id"), str) or data.get("client_application_id") is None
+        else None,
         latest_decision=_parse_decision(dict(data["latest_decision"])),
         visitor_fingerprint=_parse_visitor_fingerprint_link(data.get("visitor_fingerprint")),
     )
@@ -146,6 +149,9 @@ def _parse_session_detail(data: dict[str, Any]) -> SessionDetail:
         created_at=data.get("created_at"),
         client_user_id=data.get("client_user_id")
         if isinstance(data.get("client_user_id"), str) or data.get("client_user_id") is None
+        else None,
+        client_application_id=data.get("client_application_id")
+        if isinstance(data.get("client_application_id"), str) or data.get("client_application_id") is None
         else None,
         decision=_parse_session_decision(dict(data["decision"])),
         highlights=[dict(item) for item in data.get("highlights", []) if isinstance(item, dict)],
@@ -391,6 +397,8 @@ class SessionsAPI(_BaseAPI):
         cursor: str | None = None,
         verdict: str | None = None,
         search: str | None = None,
+        client_user_id: str | None = None,
+        client_application_id: str | None = None,
     ) -> ListResult[SessionSummary]:
         response = self._client._request_json(
             "GET",
@@ -401,6 +409,8 @@ class SessionsAPI(_BaseAPI):
                     "cursor": cursor,
                     "verdict": verdict,
                     "search": search,
+                    "client_user_id": client_user_id,
+                    "client_application_id": client_application_id,
                 }
             ),
         )
@@ -429,16 +439,41 @@ class SessionsAPI(_BaseAPI):
         )
         return _parse_session_detail(dict(response["data"]))
 
+    def attach_client_application(self, session_id: str, client_application_id: str) -> SessionDetail:
+        response = self._client._request_json(
+            "PATCH",
+            f"/v1/sessions/{session_id}",
+            body={"client_application_id": client_application_id},
+        )
+        return _parse_session_detail(dict(response["data"]))
+
+    def clear_client_application(self, session_id: str) -> SessionDetail:
+        response = self._client._request_json(
+            "PATCH",
+            f"/v1/sessions/{session_id}",
+            body={"client_application_id": None},
+        )
+        return _parse_session_detail(dict(response["data"]))
+
     def iter(
         self,
         *,
         limit: int | None = None,
         verdict: str | None = None,
         search: str | None = None,
+        client_user_id: str | None = None,
+        client_application_id: str | None = None,
     ) -> Iterator[SessionSummary]:
         cursor: str | None = None
         while True:
-            page = self.list(limit=limit, cursor=cursor, verdict=verdict, search=search)
+            page = self.list(
+                limit=limit,
+                cursor=cursor,
+                verdict=verdict,
+                search=search,
+                client_user_id=client_user_id,
+                client_application_id=client_application_id,
+            )
             for item in page.items:
                 yield item
             if not page.has_more or not page.next_cursor:
