@@ -87,6 +87,23 @@ class ContractTests(unittest.TestCase):
                 "description": "Customer-supplied identifier for the end user associated with this Foil session. Set with PATCH /v1/sessions/{sessionId}.",
             },
         )
+        self.assertEqual(
+            strip_examples(schemas["SessionSummary"]["properties"]["client_application_id"]),
+            {
+                "type": ["string", "null"],
+                "maxLength": 256,
+                "description": "Customer-supplied identifier for the application or organization on your platform that this Foil session belongs to. Set with PATCH /v1/sessions/{sessionId}.",
+            },
+        )
+        self.assertIn("client_application_id", schemas["SessionSummary"]["required"])
+        self.assertIn("client_user_id", schemas["UpdateSessionRequest"]["properties"])
+        self.assertIn("client_application_id", schemas["UpdateSessionRequest"]["properties"])
+        list_sessions_params = {
+            parameter["name"] for parameter in self._read_spec()["paths"]["/v1/sessions"]["get"]["parameters"]
+        }
+        self.assertTrue(
+            {"limit", "cursor", "verdict", "search", "client_user_id", "client_application_id"}.issubset(list_sessions_params)
+        )
         self.assertEqual(strip_examples(schemas["Organization"]["properties"]["status"]), {"$ref": "#/components/schemas/OrganizationStatus"})
         self.assertEqual(strip_examples(schemas["ApiKey"]["properties"]["status"]), {"$ref": "#/components/schemas/ApiKeyStatus"})
         self.assertEqual(
@@ -96,7 +113,7 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(schemas["OrganizationStatus"]["enum"], ["active", "suspended", "deleted"])
         self.assertEqual(schemas["ApiKeyStatus"]["enum"], ["active", "rotating", "revoked"])
         self.assertTrue(
-            {"client_user_id", "decision", "highlights", "attribution", "web_bot_auth", "network", "runtime_integrity", "visitor_fingerprint", "connection_fingerprint", "previous_decisions", "request", "browser", "device", "analysis_coverage", "signals_fired", "client_telemetry"}.issubset(
+            {"client_user_id", "client_application_id", "decision", "highlights", "attribution", "web_bot_auth", "network", "runtime_integrity", "visitor_fingerprint", "connection_fingerprint", "previous_decisions", "request", "browser", "device", "analysis_coverage", "signals_fired", "client_telemetry"}.issubset(
                 set(schemas["SessionDetail"]["required"])
             )
         )
