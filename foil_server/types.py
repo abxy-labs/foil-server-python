@@ -113,6 +113,7 @@ class VisitorFingerprintLifecycle:
     last_seen_at: str
     seen_count: int
     expires_at: str
+    """Deprecated: always ``9999-12-31T00:00:00.000Z``. Visitor IDs do not expire."""
 
 
 @dataclass(frozen=True)
@@ -123,6 +124,11 @@ class VisitorFingerprintLatestRequest:
 
 @dataclass(frozen=True)
 class VisitorFingerprintStorage:
+    """Deprecated: every flag is ``False`` from ``/v1/fingerprints``.
+
+    Treat the flags as unavailable, not as evidence that a store was absent.
+    """
+
     cookies: bool
     local_storage: bool
     indexed_db: bool
@@ -132,6 +138,8 @@ class VisitorFingerprintStorage:
 
 @dataclass(frozen=True)
 class VisitorFingerprintAnchors:
+    """Deprecated: every hash is ``None`` from ``/v1/fingerprints``."""
+
     webgl_hash: str | None
     parameters_hash: str | None
     audio_hash: str | None
@@ -163,6 +171,7 @@ class VisitorFingerprintSessionSummary:
 @dataclass(frozen=True)
 class VisitorFingerprintComponents:
     vector: list[int]
+    """Deprecated: always empty from ``/v1/fingerprints``."""
 
 
 @dataclass(frozen=True)

@@ -187,10 +187,13 @@ class ClientTests(unittest.TestCase):
             self.assertIsNone(session.native_motion_print)
             self.assertIsNone(session.device_identity)
             self.assertIsNone(session.install_id)
+            self.assertEqual(session.client_telemetry["graphics"]["webgl"]["webgl2_parameters_hash"], "webgl2_456")
+            self.assertEqual(session.visitor_fingerprint["lifecycle"]["resolution_count"], 14)
             fp_page = client.fingerprints.list()
             self.assertEqual(fp_page.items[0].id, "vid_456789abcdefghjkmnpqrstvwx")
             fp_detail = client.fingerprints.get("vid_456789abcdefghjkmnpqrstvwx")
             self.assertEqual(fp_detail.id, "vid_456789abcdefghjkmnpqrstvwx")
+            self.assertEqual(fp_detail.lifecycle.expires_at, "9999-12-31T00:00:00.000Z")
         finally:
             client.close()
 
