@@ -38,12 +38,14 @@ from foil_server import Foil
 
 client = Foil(secret_key="sk_live_...")
 
-page = client.sessions.list(verdict="bot", limit=25, client_user_id="user_123", client_application_id="app_123")
+page = client.sessions.list(verdict="bot", limit=25, client_user_id="user_123", client_application_id="app_123", client_session_id="sess_123")
 session = client.sessions.get("sid_123")
 client.sessions.attach_client_user("sid_123", "user_123")
 client.sessions.clear_client_user("sid_123")
 client.sessions.attach_client_application("sid_123", "app_123")
 client.sessions.clear_client_application("sid_123")
+client.sessions.attach_client_session("sid_123", "sess_123")
+client.sessions.clear_client_session("sid_123")
 ```
 
 ### Sealed token verification

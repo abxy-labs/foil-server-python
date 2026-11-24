@@ -73,6 +73,7 @@ class SessionSummary:
     created_at: str | None
     client_user_id: str | None
     client_application_id: str | None
+    client_session_id: str | None
     latest_decision: Decision
     visitor_fingerprint: VisitorFingerprintLink | None
 
@@ -84,6 +85,7 @@ class SessionDetail:
     created_at: str | None
     client_user_id: str | None
     client_application_id: str | None
+    client_session_id: str | None
     decision: SessionDecision
     highlights: list[dict[str, Any]]
     attribution: dict[str, Any] | None

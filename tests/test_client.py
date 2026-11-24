@@ -141,24 +141,48 @@ class ClientTests(unittest.TestCase):
 
         client = Foil(secret_key="sk_live_test", transport=httpx.MockTransport(handler))
         try:
-            page = client.sessions.list(client_user_id="user_123", client_application_id="app_123", limit=10)
+            page = client.sessions.list(
+                client_user_id="user_123",
+                client_application_id="app_123",
+                client_session_id="sess_123",
+                limit=10,
+            )
             self.assertEqual(page.items[0].client_user_id, "user_123")
             self.assertEqual(page.items[0].client_application_id, "app_123")
+            self.assertEqual(page.items[0].client_session_id, "sess_123")
             self.assertEqual(
                 seen_queries,
-                [{"limit": "10", "client_user_id": "user_123", "client_application_id": "app_123"}],
+                [
+                    {
+                        "limit": "10",
+                        "client_user_id": "user_123",
+                        "client_application_id": "app_123",
+                        "client_session_id": "sess_123",
+                    }
+                ],
             )
 
             seen_queries.clear()
-            list(client.sessions.iter(client_user_id="user_123", client_application_id="app_123"))
+            list(
+                client.sessions.iter(
+                    client_user_id="user_123",
+                    client_application_id="app_123",
+                    client_session_id="sess_123",
+                )
+            )
             self.assertEqual(len(seen_queries), 2)
             for query in seen_queries:
                 self.assertEqual(query["client_user_id"], "user_123")
                 self.assertEqual(query["client_application_id"], "app_123")
+                self.assertEqual(query["client_session_id"], "sess_123")
 
             seen_queries.clear()
             client.sessions.list(client_application_id="app_123")
             self.assertEqual(seen_queries, [{"client_application_id": "app_123"}])
+
+            seen_queries.clear()
+            client.sessions.list(client_session_id="sess_123")
+            self.assertEqual(seen_queries, [{"client_session_id": "sess_123"}])
         finally:
             client.close()
 
@@ -181,6 +205,7 @@ class ClientTests(unittest.TestCase):
             self.assertEqual(session.id, "sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(session.client_user_id, "user_123")
             self.assertEqual(session.client_application_id, "app_123")
+            self.assertEqual(session.client_session_id, "sess_123")
             self.assertIsNone(session.native_runtime_integrity)
             self.assertIsNone(session.native_app)
             self.assertIsNone(session.native_carrier)
@@ -236,6 +261,28 @@ class ClientTests(unittest.TestCase):
             self.assertEqual(attached.id, "sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(cleared.id, "sid_0123456789abcdefghjkmnpqrs")
             self.assertEqual(seen_bodies, [{"client_application_id": "app_123"}, {"client_application_id": None}])
+        finally:
+            client.close()
+
+    def test_attach_and_clear_client_session_id(self) -> None:
+        session_fixture = load_fixture("api/sessions/detail.json")
+        seen_bodies: list[dict[str, object]] = []
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            self.assertEqual(request.method, "PATCH")
+            self.assertEqual(request.url.path, "/v1/sessions/sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(request.headers["Authorization"], "Bearer sk_live_test")
+            seen_bodies.append(json.loads(request.content.decode("utf-8")))
+            return json_response(session_fixture)
+
+        client = Foil(secret_key="sk_live_test", transport=httpx.MockTransport(handler))
+        try:
+            attached = client.sessions.attach_client_session("sid_0123456789abcdefghjkmnpqrs", "sess_123")
+            cleared = client.sessions.clear_client_session("sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(attached.id, "sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(attached.client_session_id, "sess_123")
+            self.assertEqual(cleared.id, "sid_0123456789abcdefghjkmnpqrs")
+            self.assertEqual(seen_bodies, [{"client_session_id": "sess_123"}, {"client_session_id": None}])
         finally:
             client.close()
 
