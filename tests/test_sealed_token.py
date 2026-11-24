@@ -41,6 +41,23 @@ class SealedTokenTests(unittest.TestCase):
             verified = verify_foil_token(fixture["token"], secret)
             self.assertEqual(verified.raw, fixture["payload"])
 
+    def test_bot_vector_attribution_uses_session_detail_shape(self) -> None:
+        fixture = load_fixture("sealed-token/vector.v2.bot.json")
+        verified = verify_foil_token(fixture["token"], fixture["secretKeys"][0])
+        self.assertEqual(verified.raw, fixture["payload"])
+        bot = verified.attribution.bot
+        self.assertIsNotNone(bot)
+        assert bot is not None
+        self.assertEqual(
+            bot["labels"][0],
+            {"kind": "actor", "value": "automation", "label": "Automation", "confidence": 100},
+        )
+        entries = bot["labels"] + bot["behaviors"]
+        self.assertGreater(len(entries), 1)
+        for entry in entries:
+            self.assertIs(type(entry["confidence"]), int)
+            self.assertTrue(0 <= entry["confidence"] <= 100)
+
     def test_invalid_token_returns_failure_result(self) -> None:
         fixture = load_fixture("sealed-token/invalid.json")
         result = safe_verify_foil_token(fixture["token"], "sk_live_fixture_secret")
